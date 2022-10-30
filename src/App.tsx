@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import DataStreamer, { ServerRespond } from './DataStreamer';
 import Graph from './Graph';
 import './App.css';
-
+ 
 /**
  * State declaration for <App />
  */
 interface IState {
   data: ServerRespond[],
-  showGraph:boolean,
+  showGraph: boolean,
 }
-
+ 
 /**
  * The parent element of the react app.
  * It renders title, button and Graph react element.
@@ -18,7 +18,7 @@ interface IState {
 class App extends Component<{}, IState> {
   constructor(props: {}) {
     super(props);
-
+ 
     this.state = {
       // data saves the server responds.
       // We use this state to parse data down to the child element (Graph) as element property
@@ -26,15 +26,16 @@ class App extends Component<{}, IState> {
       showGraph: false,
     };
   }
-
+ 
   /**
    * Render Graph react component with state.data parse as property data
    */
   renderGraph() {
     if (this.state.showGraph){
-    return (<Graph data={this.state.data}/>)
+      return (<Graph data={this.state.data}/>)
+    }
   }
-
+ 
   /**
    * Get new data from server and update the state with the new data
    */
@@ -47,14 +48,16 @@ class App extends Component<{}, IState> {
       this.setState({
         data: serverResponds,
         showGraph: true,
+ 
     });
-   });
+  });
   x++;
-  if(x>1000){
-    clearInterval(Interval);
+  if (x>1000){
+    clearInterval(interval);
   }
-    },100);
-                                }                                
+},100);
+  }
+ 
   /**
    * Render the App react component
    */
@@ -82,5 +85,5 @@ class App extends Component<{}, IState> {
     )
   }
 }
-
+ 
 export default App;
